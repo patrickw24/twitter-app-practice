@@ -4,13 +4,13 @@ export const LogIn = () => {
 
     const onChangHandler = (event)=>{
         username= event.target.value
-        window.localStorage.setItem(username)
+        window.localStorage.setItem("username", username)
 
     }
 
     const onSubmitHandler = (event)=>{
         event.preventDefault()  
-        window.location= "/"
+        window.location= "/wall"
 
     }
 
@@ -19,18 +19,18 @@ export const LogIn = () => {
     <>
       <div className="container">
         <form>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">
+          <div className="mb-3">
+            <label className="form-label">
               Username
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={onChangHandler}
             ></input>
           </div>
 
-          <button onSubmit={onSubmitHandler} type="submit" class="btn btn-primary">
+          <button onSubmit={onSubmitHandler} type="submit" className="btn btn-primary">
             Submit
           </button>
         </form>
