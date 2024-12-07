@@ -1,6 +1,7 @@
 import React, { useDebugValue } from 'react'
 import { useEffect, useState} from 'react'
 import { PostFormat } from './PostFormat'
+import { NewTweet } from './NewTweet'
 
 export const TweetPosts = () => {
 
