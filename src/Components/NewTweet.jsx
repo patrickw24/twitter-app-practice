@@ -1,6 +1,7 @@
 import React from "react";
 
-export const NewTweet = ({ tweets, setTweets, username }) => {
+
+export const NewTweet = ({ setTweets, tweets, username }) => {
   let description = "";
 
   const url = import.meta.env.VITE_URL;
@@ -13,7 +14,7 @@ export const NewTweet = ({ tweets, setTweets, username }) => {
 
   const postTweet = async () => {
     const newUrl = `${url}/twitter_posts`;
-    let description = "";
+    
 
     let tmp = {
       user_name: username,
@@ -29,9 +30,10 @@ export const NewTweet = ({ tweets, setTweets, username }) => {
       },
       body: JSON.stringify(tmp),
     });
-
+console.log(tmp)
     if (response.ok) {
         setTweets(tweets + 1);
+        
     } else {
       let err = await response.json();
       console.log(err);
@@ -41,7 +43,7 @@ export const NewTweet = ({ tweets, setTweets, username }) => {
   
   return (
     <>
-      <div className="card mt-5">
+      <div className=" card mt-5 w-50 mx-auto bg-dark">
         <div className="card-body">
           <textarea
             onChange={onChangeHandler}

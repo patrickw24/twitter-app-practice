@@ -1,21 +1,21 @@
 import React, { useDebugValue } from 'react'
 import { useEffect, useState} from 'react'
 import { PostFormat } from './PostFormat'
-import { NewTweet } from './NewTweet'
 
-export const TweetPosts = () => {
+
+export const TweetPosts = ({tweets}) => {
 
    
 
     
 
-    const [tweets, setTweets] = useState([])
+    const [posts, setPosts] = useState([])
     const url = import.meta.env.VITE_URL
     const token = import.meta.env.VITE_TOKEN
 
 
     const getPosts = async ()=>{
-        let newURL = `${url}/twitter_posts`
+        let newURL = `${url}/twitter_posts?order=id.desc`
 
         let response = await fetch (newURL,{
             method: 'GET',
@@ -30,7 +30,7 @@ export const TweetPosts = () => {
         if (response.ok){
             data = await response.json()
            
-            setTweets(data)
+            setPosts(data)
         }else{
             let err = await response.json()
             console.log(err)
@@ -42,14 +42,14 @@ export const TweetPosts = () => {
     useEffect( ()=>{
         getPosts()
 
-    }, [])
+    }, [tweets])
 
 
 
   return (
     <>
     {
-        tweets.map( (item)=> (
+        posts.map( (item)=> (
             <PostFormat key={item.id} item={item} />
             
         ) )
